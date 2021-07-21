@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="The Soloist">
+
+
+
+    <meta name="description" content="恍不觉梦，流离之人，追逐幻影，弃友弃人">
+
+
+
+<title>同态加密学习笔记 | The Soloist&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/image/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="The Soloist's Blog" type="application/atom+xml">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">The Soloist&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/tool">Tools</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/search">Search</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">The Soloist&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/tool">Tools</a>
+                
+                    <a class="menu-item" href="/link">Links</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/search">Search</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">同态加密学习笔记</h1>
+            
+            <div class="post-meta">
+                
+                Author: <a itemprop="author" rel="author" href="/">The Soloist</a>
+                
+
+                
+                <span class="post-time">
+                    Date: <a
+                        href="#">March 14, 2020&nbsp;&nbsp;20:32:36</a>
+                </span>
+                
+                
+                <span class="post-category">
+                    Category:
+                    
+                    <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                    
+                </span>
+                
+            </div>
+            
+        </header>
+
+        <div class="post-content">
+            <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Please enter password to read.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="9cab3a6f96502ab84b001e3368b365baf9b48942f25096394112b1fa04a7a24b">c77b4a45876fcaac7c1ca7222cdaf693e44d9255532d0db2df50c757b7e6d86c37d8d2380d7bfe5a6c894f320d3a27d4c717b56a052bea06e743d076a6cd2d3e26eebceae111bff8df3d9b629ddd17e6</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        </div>
+
+        
+        <section class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>The Soloist</span>
+            </p>
+            
+            
+            <p class="copyright-item">
+                <span>Permalink:</span>
+                <span><a href="https://blog.soloist.ink/2020/03/14/%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://blog.soloist.ink/2020/03/14/%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span>
+            </p>
+            
+            
+            <p class="copyright-item">
+                <span>License:</span>
+                <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+            </p>
+            
+            
+
+        </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                    <a href="/tags/Crypto/"># Crypto</a>
+                    
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+        <br><!-- 空行，美化排版 --></br>
+
+        
+        <section id="comments" class="comments">
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://blog.soloist.ink/js/md5.min.js"></script>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'e9173ed87bfe4f9e91c3',
+    clientSecret: 'cd58600a4b5a34a0b5ff06257e1992782ad6008c',
+    id: md5(location.href),
+    // id: window.location.pathname,
+    repo: 'The-Soloist.github.io',
+    owner: 'The-Soloist',
+    admin: 'The-Soloist'
+  })
+  gitalk.render('gitalk-container')
+</script>
+        </section>
+        
+
+        
+
+
+    </article>
+</div>
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <!--
+        <span>© The Soloist | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        -->
+        <!-- <span>© The Soloist | 恍不觉梦，流离之人，追逐幻影，弃友弃人 | <a href="javascript:;" onclick="javascript:alert('My E-mail address: soloist.ttt@outlook.com')">Email Me</a></span> -->
+        <!-- <span>© The Soloist | 恍不觉梦，流离之人，追逐幻影，弃友弃人 | <a href="javascript:;" onclick="javascript:alert('My E-mail address: soloist.ttt@outlook.com')">Email Me</a></span> -->
+        <span>© The Soloist | 恍不觉梦，流离之人，追逐幻影，弃友弃人 | <a href="mailto:soloist.ttt@outlook.com">Email Me</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Soloist&#39;s Blog</title>
+  
+  
+  <link href="https://blog.soloist.ink/atom.xml" rel="self"/>
+  
+  <link href="https://blog.soloist.ink/"/>
+  <updated>2021-05-10T10:27:14.676Z</updated>
+  <id>https://blog.soloist.ink/</id>
+  
+  <author>
+    <name>The Soloist</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>同态加密学习笔记</title>
+    <link href="https://blog.soloist.ink/2020/03/14/%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://blog.soloist.ink/2020/03/14/%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-03-14T12:32:36.000Z</published>
+    <updated>2021-05-10T10:27:14.676Z</updated>
+    
+    <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">Please enter password to read.</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="9cab3a6f96502ab84b001e3368b365baf9b48942f25096394112b1fa04a7a24b">c77b4a45876fcaac7c1ca7222cdaf693e44d9255532d0db2df50c757b7e6d86c37d8d2380d7bfe5a6c894f320d3a27d4c717b56a052bea06e743d076a6cd2d3e26eebceae111bff8df3d9b629ddd17e6</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Please enter password to read.</summary>
+    
+    
+    
+    <category term="学习笔记" scheme="https://blog.soloist.ink/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Crypto" scheme="https://blog.soloist.ink/tags/Crypto/"/>
+    
+  </entry>
+  
+</feed>
